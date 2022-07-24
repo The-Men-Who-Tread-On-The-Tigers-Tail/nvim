@@ -36,4 +36,7 @@ end
 
 lsp_lines.setup()
 
+-- enable autoformat
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+
 return M
