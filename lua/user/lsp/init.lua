@@ -29,14 +29,14 @@ require "user.lsp.lsp-installer"
 require("user.lsp.handlers").setup()
 require "user.lsp.null-ls"
 
+-- enable autoformat
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+
 local l_status_ok, lsp_lines = pcall(require, "lsp_lines")
 if not l_status_ok then
   return
 end
 
 lsp_lines.setup()
-
--- enable autoformat
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
 return M

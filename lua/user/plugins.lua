@@ -112,12 +112,12 @@ return packer.startup(function(use)
   -- use "lunarvim/onedarker.nvim"
   -- use "folke/tokyonight.nvim"
   -- use "lunarvim/colorschemes"
-  use({
+  use {
     "olimorris/onedarkpro.nvim",
     config = function()
       require("onedarkpro").setup()
-    end
-  })
+    end,
+  }
 
   -- Utility
   use "rcarriga/nvim-notify"
