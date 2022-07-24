@@ -26,7 +26,6 @@ vim.api.nvim_set_hl(0, "SLSep", { fg = "#32363e", bg = "NONE" })
 vim.api.nvim_set_hl(0, "SLFG", { fg = "#abb2bf", bg = sl_hl.background })
 vim.api.nvim_set_hl(0, "SLError", { fg = "#bf616a", bg = sl_hl.background })
 vim.api.nvim_set_hl(0, "SLWarning", { fg = "#D7BA7D", bg = sl_hl.background })
-vim.api.nvim_set_hl(0, "SLCopilot", { fg = "#6CC644", bg = sl_hl.background })
 vim.api.nvim_set_hl(0, "SLGitIcon", { fg = "#E8AB53", bg = "#32363e" })
 vim.api.nvim_set_hl(0, "SLBranchName", { fg = "#abb2bf", bg = "#32363e", bold = false })
 vim.api.nvim_set_hl(0, "SLProgress", { fg = "#abb2bf", bg = "#32363e" })
@@ -330,15 +329,11 @@ local lanuage_server = {
 
     local clients = vim.lsp.buf_get_clients()
     local client_names = {}
-    local copilot_active = false
 
     -- add client
     for _, client in pairs(clients) do
       if client.name ~= "copilot" and client.name ~= "null-ls" then
         table.insert(client_names, client.name)
-      end
-      if client.name == "copilot" then
-        copilot_active = true
       end
     end
 
@@ -371,11 +366,8 @@ local lanuage_server = {
     if client_names_str_len ~= 0 then
       language_servers = hl_str(" ", "SLSep") .. hl_str(client_names_str, "SLLSP") .. hl_str("", "SLSep")
     end
-    if copilot_active then
-      language_servers = language_servers .. "%#SLCopilot#" .. " " .. icons.git.Octoface .. "%*"
-    end
 
-    if client_names_str_len == 0 and not copilot_active then
+    if client_names_str_len == 0 then
       return ""
     else
       M.language_servers = language_servers

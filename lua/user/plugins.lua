@@ -57,16 +57,6 @@ return packer.startup(function(use)
   use "SmiteshP/nvim-navic"
   use "simrat39/symbols-outline.nvim"
   use "b0o/SchemaStore.nvim"
-  -- use "github/copilot.vim"
-  use {
-    "zbirenbaum/copilot.lua",
-    event = { "VimEnter" },
-    config = function()
-      vim.defer_fn(function()
-        require "user.copilot"
-      end, 100)
-    end,
-  }
   use "RRethy/vim-illuminate"
   use "j-hui/fidget.nvim"
   use { "lvimuser/lsp-inlayhints.nvim", branch = "readme" }
@@ -81,7 +71,6 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-emoji"
   use "hrsh7th/cmp-nvim-lua"
-  use "zbirenbaum/copilot-cmp"
   use { "tzachar/cmp-tabnine", run = "./install.sh" }
 
   -- Snippet
