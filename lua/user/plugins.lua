@@ -120,10 +120,15 @@ return packer.startup(function(use)
   use "ziontee113/color-picker.nvim"
 
   -- Colorschemes
-  use "lunarvim/onedarker.nvim"
-  -- use "lunarvim/darkplus.nvim"
+  -- use "lunarvim/onedarker.nvim"
   -- use "folke/tokyonight.nvim"
   -- use "lunarvim/colorschemes"
+  use({
+    "olimorris/onedarkpro.nvim",
+    config = function()
+      require("onedarkpro").setup()
+    end
+  })
 
   -- Utility
   use "rcarriga/nvim-notify"

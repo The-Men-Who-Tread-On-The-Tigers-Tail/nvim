@@ -4,11 +4,6 @@ if not status_ok then
   return
 end
 
-local status_theme_ok, theme = pcall(require, "lualine.themes.onedarker_alt")
-if not status_theme_ok then
-  return
-end
-
 -- check if value in table
 local function contains(t, value)
   for _, v in pairs(t) do
@@ -20,28 +15,22 @@ local function contains(t, value)
 end
 
 local sl_hl = vim.api.nvim_get_hl_by_name("StatusLine", true)
-local sl_hl_sep = vim.api.nvim_get_hl_by_name("StatusLineSeparator", true)
 
-vim.api.nvim_set_hl(0, "SLGitIcon", { fg = "#E8AB53", bg = sl_hl_sep.foreground })
+-- colors for lualine 
 vim.api.nvim_set_hl(0, "SLTermIcon", { fg = "#b668cd", bg = "#32363e" })
-vim.api.nvim_set_hl(0, "SLBranchName", { fg = "#abb2bf", bg = sl_hl_sep.foreground, bold = false })
-vim.api.nvim_set_hl(0, "SLProgress", { fg = "#b668cd", bg = "#32363e" })
 vim.api.nvim_set_hl(0, "SLLocation", { fg = "#519fdf", bg = "#32363e" })
 vim.api.nvim_set_hl(0, "SLFT", { fg = "#46a6b2", bg = "#32363e" })
 vim.api.nvim_set_hl(0, "SLIndent", { fg = "#c18a56", bg = "#32363e" })
-vim.api.nvim_set_hl(0, "SLLSP", { fg = "#6b727f", bg = sl_hl.background })
+vim.api.nvim_set_hl(0, "SLLSP", { fg = "#6b727f", bg = "#32363e" })
 vim.api.nvim_set_hl(0, "SLSep", { fg = "#32363e", bg = "NONE" })
 vim.api.nvim_set_hl(0, "SLFG", { fg = "#abb2bf", bg = sl_hl.background })
-vim.api.nvim_set_hl(0, "SLSeparator", { fg = "#6b727f", bg = sl_hl.background, italic = true })
 vim.api.nvim_set_hl(0, "SLError", { fg = "#bf616a", bg = sl_hl.background })
 vim.api.nvim_set_hl(0, "SLWarning", { fg = "#D7BA7D", bg = sl_hl.background })
 vim.api.nvim_set_hl(0, "SLCopilot", { fg = "#6CC644", bg = sl_hl.background })
--- darkerplus
--- vim.api.nvim_set_hl(0, "SLGitIcon", { fg = "#E8AB53", bg = "#303030" })
--- vim.api.nvim_set_hl(0, "SLBranchName", { fg = "#abb2bf", bg = "#303030", bold = false })
--- -- vim.api.nvim_set_hl(0, "SLProgress", { fg = "#D7BA7D", bg = "#252525" })
--- vim.api.nvim_set_hl(0, "SLProgress", { fg = "#abb2bf", bg = "#303030" })
--- vim.api.nvim_set_hl(0, "SLSeparator", { fg = "#545862", bg = "#252525" })
+vim.api.nvim_set_hl(0, "SLGitIcon", { fg = "#E8AB53", bg = "#32363e" })
+vim.api.nvim_set_hl(0, "SLBranchName", { fg = "#abb2bf", bg = "#32363e", bold = false })
+vim.api.nvim_set_hl(0, "SLProgress", { fg = "#abb2bf", bg = "#32363e" })
+vim.api.nvim_set_hl(0, "SLSeparator", { fg = "#545862", bg = "#252525" })
 
 local hl_str = function(str, hl)
   return "%#" .. hl .. "#" .. str .. "%*"
@@ -74,7 +63,7 @@ local mode_color = {
 
 local left_pad = {
   function()
-    return " "
+    return hl_str(" ","SLSep")
   end,
   padding = 0,
   color = function()
@@ -84,7 +73,7 @@ local left_pad = {
 
 local right_pad = {
   function()
-    return " "
+    return hl_str(" ", "SLSep")
   end,
   padding = 0,
   color = function()
@@ -98,7 +87,7 @@ local left_pad_alt = {
   end,
   padding = 0,
   color = function()
-    return { fg = "#32363e" }
+    return { bg = "NONE" }
   end,
 }
 
@@ -108,7 +97,7 @@ local right_pad_alt = {
   end,
   padding = 0,
   color = function()
-    return { fg = "#32363e" }
+    return { bg = "NONE" }
   end,
 }
 
@@ -148,7 +137,7 @@ local diagnostics = {
     error = "%#SLError#" .. icons.diagnostics.Error .. "%*" .. " ",
     warn = "%#SLWarning#" .. icons.diagnostics.Warning .. "%*" .. " ",
   },
-  colored = false,
+  colored = true,
   update_in_insert = false,
   always_visible = true,
   padding = 0,
@@ -216,7 +205,7 @@ local branch = {
   icons_enabled = true,
   icon = "%#SLGitIcon#" .. " " .. "%*" .. "%#SLBranchName#",
   -- color = "Constant",
-  colored = false,
+  colored = true,
   padding = 0,
   -- cond = hide_in_width_100,
   fmt = function(str)
@@ -380,7 +369,7 @@ local lanuage_server = {
     local language_servers = ""
     local client_names_str_len = #client_names_str
     if client_names_str_len ~= 0 then
-      language_servers = hl_str("", "SLSep") .. hl_str(client_names_str, "SLSeparator") .. hl_str("", "SLSep")
+      language_servers = hl_str(" ", "SLSep") .. hl_str(client_names_str, "SLLSP") .. hl_str("", "SLSep")
     end
     if copilot_active then
       language_servers = language_servers .. "%#SLCopilot#" .. " " .. icons.git.Octoface .. "%*"
@@ -413,7 +402,7 @@ lualine.setup {
     globalstatus = true,
     icons_enabled = true,
     -- theme = "auto",
-    theme = theme,
+    -- theme = theme,
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     disabled_filetypes = { "alpha", "dashboard" },
