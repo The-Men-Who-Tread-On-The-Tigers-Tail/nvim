@@ -30,21 +30,6 @@ configs.setup {
     enable = true,
     disable = { "xml", "markdown" },
   },
-  rainbow = {
-    enable = true,
-    colors = {
-      "#68a0b0",
-      "#946EaD",
-      "#c7aA6D",
-      -- "Gold",
-      -- "Orchid",
-      -- "DodgerBlue",
-      -- "Cornsilk",
-      -- "Salmon",
-      -- "LawnGreen",
-    },
-    disable = { "html" },
-  },
   playground = {
     enable = true,
   },
