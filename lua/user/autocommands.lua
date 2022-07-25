@@ -99,20 +99,6 @@ vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
   end,
 })
 
--- require("user.winbar").get_winbar()
-
-if vim.fn.has "nvim-0.8" == 1 then
-  vim.api.nvim_create_autocmd(
-    { "CursorMoved", "CursorHold", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost", "TabClosed" },
-    {
-      callback = function()
-        require("user.winbar").get_winbar()
-      end,
-    }
-  )
-end
--- require "user.winbar"
-
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   callback = function()
     vim.cmd "set formatoptions-=cro"
