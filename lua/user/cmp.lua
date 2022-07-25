@@ -31,10 +31,6 @@ local icons = require "user.icons"
 
 local kind_icons = icons.kind
 
-vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
-vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
-vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
-
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -110,17 +106,14 @@ cmp.setup {
 
       if entry.source.name == "cmp_tabnine" then
         vim_item.kind = icons.misc.Robot
-        vim_item.kind_hl_group = "CmpItemKindTabnine"
       end
 
       if entry.source.name == "emoji" then
         vim_item.kind = icons.misc.Smiley
-        vim_item.kind_hl_group = "CmpItemKindEmoji"
       end
 
       if entry.source.name == "crates" then
         vim_item.kind = icons.misc.Package
-        vim_item.kind_hl_group = "CmpItemKindCrate"
       end
 
       -- NOTE: order matters
