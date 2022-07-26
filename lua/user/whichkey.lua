@@ -339,6 +339,10 @@ local mappings = {
     p = { "<cmd>TSPlaygroundToggle<cr>", "Playground" },
     r = { "<cmd>TSToggle rainbow<cr>", "Rainbow" },
   },
+  m = {
+    name = "Markdown",
+    p = { "<cmd>:MarkdownPreview<cr>", "Preview" },
+  },
 }
 
 local vopts = {

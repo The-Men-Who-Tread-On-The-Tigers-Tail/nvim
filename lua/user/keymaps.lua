@@ -102,4 +102,6 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap("n", "<m-g>", "<cmd>Telescope git_branches<cr>", opts)
 vim.api.nvim_set_keymap("n", "<s-enter>", "<cmd>TodoQuickFix<cr>", opts)
 
+keymap("n", "<Space>mp", ":MarkdownPreview<CR>", opts)
+
 return M
