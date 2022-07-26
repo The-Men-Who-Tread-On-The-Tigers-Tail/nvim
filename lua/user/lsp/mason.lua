@@ -19,18 +19,13 @@ local servers = {
   "taplo",
   "zk@v0.10.1",
   "eslint",
-  -- "prettier", don't know where to put this
+  -- "prettier", -- don't know where to put this
   -- "black",
 }
 
 local settings = {
   ui = {
     border = "rounded",
-    icons = {
-      package_installed = "◍",
-      package_pending = "◍",
-      package_uninstalled = "◍",
-    },
   },
   log_level = vim.log.levels.INFO,
   max_concurrent_installers = 4,
