@@ -117,7 +117,6 @@ return packer.startup(function(use)
   -- Colorschemes
   -- use "lunarvim/onedarker.nvim"
   -- use "folke/tokyonight.nvim"
-  -- use "lunarvim/colorschemes"
   use {
     "olimorris/onedarkpro.nvim",
     config = function()
