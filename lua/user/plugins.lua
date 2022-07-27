@@ -124,6 +124,7 @@ return packer.startup(function(use)
       require("onedarkpro").setup()
     end,
   }
+  use "folke/lsp-colors.nvim" -- adds missing LSP diagnostic highlighting when colorschemes not support it
 
   -- Utility
   use "rcarriga/nvim-notify"
