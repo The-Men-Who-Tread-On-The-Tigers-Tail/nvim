@@ -4,23 +4,27 @@ if not status_ok then
 end
 
 -- Eviline config for lualine
--- Author: shadmansaleh
+-- Author: shadmansaleh, modified by The-Men-Who...
 -- Credit: glepnir
 
 -- Color table for highlights
 -- stylua: ignore
+
+local icons = require("user.icons")
+
 local colors = {
-  bg       = vim.g.terminal_color_background,
-  fg       = vim.g.terminal_color_foreground,
-  yellow   = vim.g.terminal_color_3,
-  cyan     = vim.g.terminal_color_6,
+  bg = vim.g.terminal_color_background,
+  fg = vim.g.terminal_color_foreground,
+  yellow = vim.g.terminal_color_3,
+  cyan = vim.g.terminal_color_6,
   darkblue = vim.g.terminal_color_12,
-  green    = vim.g.terminal_color_2,
-  orange   = vim.g.terminal_color_11,
-  violet   = vim.g.terminal_color_13,
-  magenta  = vim.g.terminal_color_,
-  blue     = vim.g.terminal_color_4,
-  red      = vim.g.terminal_color_1,
+  green = vim.g.terminal_color_2,
+  orange = vim.g.terminal_color_11,
+  violet = vim.g.terminal_color_13,
+  magenta = vim.g.terminal_color_13,
+  blue = vim.g.terminal_color_4,
+  red = vim.g.terminal_color_1,
+  grey = vim.g.terminal_color_comment,
 }
 
 local conditions = {
@@ -84,10 +88,9 @@ end
 
 ins_left {
   function()
-    return "▊"
+    return " "
   end,
-  color = { fg = colors.blue }, -- Sets highlighting of component
-  padding = { left = 0, right = 1 }, -- We don't need space before this
+  padding = { left = 1 }, -- We don't need space before this
 }
 
 ins_left {
@@ -121,33 +124,34 @@ ins_left {
     }
     return { fg = mode_color[vim.fn.mode()] }
   end,
-  padding = { right = 1 },
+  padding = { right = 2 },
 }
 
 ins_left {
   -- filesize component
   "filesize",
   cond = conditions.buffer_not_empty,
+  color = { fg = colors.grey },
 }
 
 ins_left {
   "filename",
   cond = conditions.buffer_not_empty,
-  color = { fg = colors.magenta, gui = "bold" },
+  color = { bg = colors.cyan, fg = colors.bg, gui = "bold" },
 }
 
-ins_left { "location" }
+ins_left { "location", color = { fg = colors.grey } }
 
-ins_left { "progress", color = { fg = colors.fg, gui = "bold" } }
+ins_left { "progress", color = { fg = colors.grey, gui = "bold" } }
 
 ins_left {
   "diagnostics",
   sources = { "nvim_diagnostic" },
   symbols = { error = " ", warn = " ", info = " " },
   diagnostics_color = {
-    color_error = { fg = colors.red },
-    color_warn = { fg = colors.yellow },
-    color_info = { fg = colors.cyan },
+    error = { fg = colors.red },
+    warn = { fg = colors.yellow },
+    info = { fg = colors.cyan },
   },
 }
 
@@ -172,13 +176,13 @@ ins_left {
     for _, client in ipairs(clients) do
       local filetypes = client.config.filetypes
       if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-        client_names = client_names .. ", " .. client.name
+        client_names = client_names .. " " .. client.name
       end
     end
     return client_names
   end,
-  icon = " LSP:",
-  color = { fg = "#ffffff", gui = "bold" },
+  icon = " ",
+  color = { fg = colors.blue, gui = "bold" },
 }
 
 -- Add components to right sections
@@ -186,20 +190,19 @@ ins_right {
   "o:encoding", -- option component same as &encoding in viml
   fmt = string.upper, -- I'm not sure why it's upper case either ;)
   cond = conditions.hide_in_width,
-  color = { fg = colors.green, gui = "bold" },
+  color = { fg = colors.grey, gui = "bold" },
 }
 
 ins_right {
   "fileformat",
   fmt = string.upper,
-  icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-  color = { fg = colors.green, gui = "bold" },
+  icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
+  color = { fg = colors.grey, gui = "bold" },
 }
 
 ins_right {
   "branch",
-  icon = "",
-  color = { fg = colors.violet, gui = "bold" },
+  color = { fg = colors.magenta, gui = "bold" },
 }
 
 ins_right {
@@ -214,13 +217,4 @@ ins_right {
   cond = conditions.hide_in_width,
 }
 
-ins_right {
-  function()
-    return "▊"
-  end,
-  color = { fg = colors.blue },
-  padding = { left = 1 },
-}
-
--- Now don't forget to initialize lualine
 lualine.setup(config)

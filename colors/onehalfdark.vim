@@ -220,5 +220,6 @@ hi link gitcommitUnmergedArrow gitcommitUnmergedFile
     let g:terminal_color_15 = s:white.gui
     let g:terminal_color_background = s:bg.gui
     let g:terminal_color_foreground = s:fg.gui
+    let g:terminal_color_comment = s:comment_fg.gui " HACK, I don't know a better way to access these color..:(
   endif
 " }
