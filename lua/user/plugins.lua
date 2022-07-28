@@ -198,6 +198,7 @@ return packer.startup(function(use)
   use "andymass/vim-matchup"
   use "folke/zen-mode.nvim"
   use "karb94/neoscroll.nvim"
+  use "junegunn/vim-slash"
 
   -- Motion
   use "christianchiarulli/hop.nvim"

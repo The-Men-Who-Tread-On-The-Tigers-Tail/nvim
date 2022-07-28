@@ -36,7 +36,9 @@ local options = {
   scrolloff = 8, -- is one of my fav
   sidescrolloff = 8,
   guifont = "agave Nerd Font Mono:h16", -- the font used in graphical neovim applications
+  title = true,
 }
+
 -- vim.g.loaded_netrw = 1
 -- vim.g.loaded_netrwPlugin = 1
 -- vim.opt.fillchars.eob = " "
