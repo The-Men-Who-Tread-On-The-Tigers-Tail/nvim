@@ -116,15 +116,13 @@ return packer.startup(function(use)
   use "ziontee113/color-picker.nvim"
 
   -- Colorschemes
-  -- use "lunarvim/onedarker.nvim"
-  -- use "folke/tokyonight.nvim"
+  use "rebelot/kanagawa.nvim"
   use {
-    "olimorris/onedarkpro.nvim",
-    config = function()
-      require("onedarkpro").setup()
-    end,
+    "rose-pine/neovim",
+    as = "rose-pine",
+    tag = "v1.*",
   }
-  use "folke/lsp-colors.nvim" -- adds missing LSP diagnostic highlighting when colorschemes not support it
+  use "folke/lsp-colors.nvim" -- adds missing LSP diagnostic highlighting when colorscheme not support it
 
   -- Utility
   use "rcarriga/nvim-notify"
