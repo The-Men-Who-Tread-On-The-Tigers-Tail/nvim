@@ -32,14 +32,14 @@ keymap("n", "<m-y>", ":tabclose<cr>", opts)
 keymap("n", "<m-\\>", ":tabonly<cr>", opts)
 
 -- I hate typing these
-keymap("n", "H", "^", opts)
-keymap("n", "L", "$", opts)
-keymap("v", "H", "^", opts)
-keymap("v", "L", "$", opts)
-keymap("x", "H", "^", opts)
-keymap("x", "L", "$", opts)
-keymap("o", "H", "^", opts)
-keymap("o", "L", "$", opts)
+-- keymap("n", "H", "^", opts)
+-- keymap("n", "L", "$", opts)
+-- keymap("v", "H", "^", opts)
+-- keymap("v", "L", "$", opts)
+-- keymap("x", "H", "^", opts)
+-- keymap("x", "L", "$", opts)
+-- keymap("o", "H", "^", opts)
+-- keymap("o", "L", "$", opts)
 
 -- Visual --
 -- Stay in indent mode
