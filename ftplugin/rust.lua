@@ -13,20 +13,20 @@ local opts = {
 }
 
 local mappings = {
-  L = {
+  R = {
     name = "Rust",
     h = { "<cmd>RustToggleInlayHints<Cr>", "Toggle Hints" },
-    r = { "<cmd>RustRunnables<Cr>", "Runnables" },
-    -- r = { "<cmd>lua _CARGO_RUN()<cr>", "Cargo Run" },
+    R = { "<cmd>RustRunnables<Cr>", "Runnables" },
+    r = { "<cmd>RustRun<Cr>", "Cargo Run" },
     t = { "<cmd>lua _CARGO_TEST()<cr>", "Cargo Test" },
     m = { "<cmd>RustExpandMacro<Cr>", "Expand Macro" },
     c = { "<cmd>RustOpenCargo<Cr>", "Open Cargo" },
     p = { "<cmd>RustParentModule<Cr>", "Parent Module" },
     -- j = { "<cmd>RustJoinLines<Cr>", "Join Lines" },
     -- s = { "<cmd>RustStartStandaloneServerForBuffer<Cr>", "Start Server Buf" },
-    d = { "<cmd>RustDebuggables<Cr>", "Debuggables" },
-    v = { "<cmd>RustViewCrateGraph<Cr>", "View Crate Graph" },
-    R = {
+    D = { "<cmd>RustDebuggables<Cr>", "Debuggables" },
+    -- v = { "<cmd>RustViewCrateGraph<Cr>", "View Crate Graph" },
+    L = {
       "<cmd>lua require('rust-tools/workspace_refresh')._reload_workspace_from_cargo_toml()<Cr>",
       "Reload Workspace",
     },
