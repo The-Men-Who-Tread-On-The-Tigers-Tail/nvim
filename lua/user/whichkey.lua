@@ -130,7 +130,6 @@ local mappings = {
   -- ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   -- P = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   -- ["R"] = { '<cmd>lua require("renamer").rename()<cr>', "Rename" },
-  -- ["z"] = { "<cmd>ZenMode<cr>", "Zen" },
   ["gy"] = "Link",
 
   B = {
@@ -339,6 +338,7 @@ local mappings = {
     p = { "<cmd>TSPlaygroundToggle<cr>", "Playground" },
     r = { "<cmd>TSToggle rainbow<cr>", "Rainbow" },
   },
+
   m = {
     name = "Markdown",
     p = { "<cmd>:MarkdownPreview<cr>", "Preview" },
@@ -356,6 +356,7 @@ local vopts = {
 local vmappings = {
   ["/"] = { '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', "Comment" },
   s = { "<esc><cmd>'<,'>SnipRun<cr>", "Run range" },
+  -- z = { "<cmd>TZNarrow<cr>", "Narrow" },
 }
 
 which_key.setup(setup)

@@ -196,12 +196,11 @@ return packer.startup(function(use)
   use "monaqa/dial.nvim"
   use "nacro90/numb.nvim"
   use "andymass/vim-matchup"
-  use "folke/zen-mode.nvim"
   use "karb94/neoscroll.nvim"
   use "junegunn/vim-slash"
 
   -- Motion
-  use "christianchiarulli/hop.nvim"
+  use "phaazon/hop.nvim"
   -- use "jinh0/eyeliner.nvim"
 
   -- Keybinding
