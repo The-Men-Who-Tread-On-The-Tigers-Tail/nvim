@@ -13,6 +13,22 @@ if not tabnine_status_ok then
   return
 end
 
+local buffer_fts = {
+  "markdown",
+  "toml",
+  "yaml",
+  "json",
+}
+
+local function contains(t, value)
+  for _, v in pairs(t) do
+    if v == value then
+      return true
+    end
+  end
+  return false
+end
+
 local compare = require "cmp.config.compare"
 
 require("luasnip/loaders/from_vscode").lazy_load()
@@ -31,7 +47,16 @@ local icons = require "user.icons"
 
 local kind_icons = icons.kind
 
+vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
+vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
+vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
+
+vim.g.cmp_active = true
+
 cmp.setup {
+  enabled = function()
+    return vim.g.cmp_active
+  end,
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -135,14 +160,15 @@ cmp.setup {
   },
   sources = {
     { name = "crates", group_index = 1 },
-    -- { name = "nvim_lsp", group_index = 2 },
     {
       name = "nvim_lsp",
       filter = function(entry, ctx)
-        -- vim.pretty_print()
         local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
-        -- vim.bo.filetype
         if kind == "Snippet" and ctx.prev_context.filetype == "java" then
+          return true
+        end
+
+        if kind == "Text" then
           return true
         end
       end,
@@ -150,7 +176,15 @@ cmp.setup {
     },
     { name = "nvim_lua", group_index = 2 },
     { name = "luasnip", group_index = 2 },
-    { name = "buffer", group_index = 2 },
+    {
+      name = "buffer",
+      group_index = 2,
+      filter = function(entry, ctx)
+        if not contains(buffer_fts, ctx.prev_context.filetype) then
+          return true
+        end
+      end,
+    },
     { name = "cmp_tabnine", group_index = 2 },
     { name = "path", group_index = 2 },
     { name = "emoji", group_index = 2 },
