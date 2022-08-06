@@ -64,7 +64,7 @@ keymap("v", "p", '"_dP', opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Custom
-keymap("n", "<c-h>", "<cmd>nohlsearch<cr>", opts)
+-- keymap("n", "<c-h>", "<cmd>nohlsearch<cr>", opts)
 -- NOTE: the fact that tab and ctrl-i are the same is stupid
 keymap("n", "<C-p>", "<cmd>Telescope projects<cr>", opts)
 
@@ -98,9 +98,45 @@ vim.api.nvim_set_keymap(
   opts
 )
 
+-- vim.api.nvim_set_keymap(
+--   "n",
+--   "<tab>",
+--   "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+--   opts
+-- )
+
+-- vim.api.nvim_set_keymap("n", "<tab>", "<cmd>lua require('telescope.builtin').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>", opts)
+
+vim.api.nvim_set_keymap(
+  "n",
+  "<tab>",
+  "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>",
+  opts
+)
+vim.api.nvim_set_keymap(
+  "n",
+  "<s-tab>",
+  "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>",
+  opts
+)
+-- vim.api.nvim_set_keymap("n", "<tab>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", opts)
+
 vim.api.nvim_set_keymap("n", "<m-g>", "<cmd>Telescope git_branches<cr>", opts)
 vim.api.nvim_set_keymap("n", "<s-enter>", "<cmd>TodoQuickFix<cr>", opts)
 
+
 keymap("n", "<Space>mp", ":MarkdownPreview<CR>", opts)
+
+vim.cmd [[
+  function! QuickFixToggle()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+      copen
+    else
+      cclose
+    endif
+  endfunction
+]]
+
+keymap("n", "<m-q>", ":call QuickFixToggle()<cr>", opts)
 
 return M

@@ -55,6 +55,10 @@ vim.g.cmp_active = true
 
 cmp.setup {
   enabled = function()
+    local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+    if buftype == "prompt" then
+      return false
+    end
     return vim.g.cmp_active
   end,
   snippet = {
@@ -62,7 +66,6 @@ cmp.setup {
       luasnip.lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
-
   mapping = cmp.mapping.preset.insert {
     ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
     ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
@@ -89,7 +92,7 @@ cmp.setup {
     },
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
-    ["<CR>"] = cmp.mapping.confirm { select = true },
+    ["<CR>"] = cmp.mapping.confirm { select = false },
     -- ["<Right>"] = cmp.mapping.confirm { select = true },
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then

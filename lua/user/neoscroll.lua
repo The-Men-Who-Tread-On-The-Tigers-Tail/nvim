@@ -16,7 +16,7 @@ neoscroll.setup {
   -- post_hook = nil, -- Function to run after the scrolling animation ends
 }
 
--- local t = {}
+local t = {}
 -- Syntax: t[keys] = {function, {function arguments}}
 -- t['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '250'}}
 -- t['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '250'}}
@@ -26,10 +26,12 @@ neoscroll.setup {
 -- t['<C-e>'] = {'scroll', { '0.10', 'false', '100'}}
 -- t['H'] = {'scroll', {'-0.10', 'true', '100'}}
 -- t['L'] = {'scroll', { '0.10', 'true', '100'}}
--- t["H"] = { "scroll", { "-vim.wo.scroll", "true", "250" } }
--- t["L"] = { "scroll", { "vim.wo.scroll", "true", "250" } }
+t["<c-k>"] = { "scroll", { "-vim.wo.scroll", "true", "250" } }
+t["<c-j>"] = { "scroll", { "vim.wo.scroll", "true", "250" } }
+
 -- t['zt']    = {'zt', {'250'}}
 -- t['zz']    = {'zz', {'250'}}
 -- t['zb']    = {'zb', {'250'}}
 
--- require("neoscroll.config").set_mappings(t)
+
+require("neoscroll.config").set_mappings(t)
