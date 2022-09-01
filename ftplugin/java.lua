@@ -19,10 +19,10 @@ end
 -- Determine OS
 local home = os.getenv "HOME"
 if vim.fn.has "mac" == 1 then
-  WORKSPACE_PATH = home .. "/workspace/"
+  WORKSPACE_PATH = home .. "/workspace/java/"
   CONFIG = "mac"
 elseif vim.fn.has "unix" == 1 then
-  WORKSPACE_PATH = home .. "/workspace/"
+  WORKSPACE_PATH = home .. "/workspace/java/"
   CONFIG = "linux"
 else
   print "Unsupported system"
@@ -38,6 +38,7 @@ end
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
+-- If you started neovim within `~/dev/xy/project-1` this would resolve to `project-1`
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
 local workspace_dir = WORKSPACE_PATH .. project_name
@@ -257,6 +258,3 @@ local vmappings = {
 
 which_key.register(mappings, opts)
 which_key.register(vmappings, vopts)
-
--- debugging
--- git clone git@github.com:microsoft/java-debug.git
