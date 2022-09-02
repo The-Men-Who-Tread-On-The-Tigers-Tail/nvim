@@ -146,8 +146,8 @@ telescope.setup {
       },
     },
   },
-  pickers = {
 
+  pickers = {
     live_grep = {
       theme = "dropdown",
     },
@@ -186,7 +186,6 @@ telescope.setup {
       theme = "dropdown",
       initial_mode = "normal",
     },
-
 
     -- Default configuration for builtin pickers goes here:
     -- picker_name = {
