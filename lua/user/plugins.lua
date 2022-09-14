@@ -113,7 +113,8 @@ return packer.startup(function(use)
   use "mickael-menu/zk-nvim"
 
   -- Color
-  use "NvChad/nvim-colorizer.lua"
+  -- use "NvChad/nvim-colorizer.lua"
+  use 'norcalli/nvim-colorizer.lua'
   -- use "ziontee113/color-picker.nvim"
   use "nvim-colortils/colortils.nvim"
 
@@ -164,8 +165,8 @@ return packer.startup(function(use)
 
   -- Comment
   use "numToStr/Comment.nvim"
-  -- use "folke/todo-comments.nvim"
-  use "B4mbus/todo-comments.nvim"
+  use "folke/todo-comments.nvim"
+  -- use "B4mbus/todo-comments.nvim"
 
   -- Terminal
   use "akinsho/toggleterm.nvim"
