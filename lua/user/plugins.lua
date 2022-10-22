@@ -114,7 +114,7 @@ return packer.startup(function(use)
 
   -- Color
   -- use "NvChad/nvim-colorizer.lua"
-  use 'norcalli/nvim-colorizer.lua'
+  use "norcalli/nvim-colorizer.lua"
   -- use "ziontee113/color-picker.nvim"
   use "nvim-colortils/colortils.nvim"
 
@@ -123,9 +123,8 @@ return packer.startup(function(use)
   use {
     "rose-pine/neovim",
     as = "rose-pine",
-    tag = "v1.*",
   }
-  use "folke/lsp-colors.nvim" -- adds missing LSP diagnostic highlighting when colorscheme not support it
+  -- use "folke/lsp-colors.nvim" -- adds missing LSP diagnostic highlighting when colorscheme not support it
 
   -- Utility
   use "rcarriga/nvim-notify"
